@@ -1,0 +1,51 @@
+<mat-accordion *ngIf="game.options">
+
+  <mat-expansion-panel *ngIf="optionChosen('dark')">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <gamesbyemail-base-optiontitle type="option" [info]="true">
+          Dark
+        </gamesbyemail-base-optiontitle>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>
+      With the Dark option, the following applies:
+    </p>
+    <ul>
+      <li>
+        Hexes are 'dark' (you cannot see enemy units in them) except as described below.
+      </li>
+      <li>
+        When it is not your turn, you can only see into the spaces immediately surrounding your units and towns, and two spaces away from your cities and capital.
+      </li>
+      <li>
+        When it is your turn, you can see into the above spaces, plus any spaces you can move a unit to, plus one space beyond those.
+      </li>
+      <li>
+        You will 'remember' where opponent towns, cities and capitals in dark hexes, but only as you last saw them. You will not be able to tell if they have been upgraded or captured by another player since you last saw them.
+      </li>
+    </ul>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="optionChosen('independentExploration')">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <gamesbyemail-base-optiontitle type="option" [info]="true">
+            Independent Exploration
+          </gamesbyemail-base-optiontitle>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        With the Independent Exploration option, the following applies:
+      </p>
+      <ul>
+        <li>
+          The map is explored independently.
+        </li>
+        <li>
+          You will not be able to see units in pieces you have not explored yet.
+        </li>
+      </ul>
+      </mat-expansion-panel>
+  
+</mat-accordion>

@@ -1,0 +1,73 @@
+::ng-deep text{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.border {
+  fill:rgb(0,0,0);
+}
+.edge {
+  fill:black;
+}
+.cap {
+  stroke:black;
+  stroke-width: 0.5;
+}
+.highlight {
+  fill:none;
+  stroke:rgb(0,0,255);
+  stroke-width:1;
+}
+
+.terrain {
+  stroke: rgba(0,0,0,1);
+  stroke-width: 1px;
+  fill:rgb(255,255,255);
+}
+.Plain.terrain {
+  fill:url(#Plain)
+}
+.Grassland.terrain {
+  fill:url(#Grassland)
+}
+.Forest.terrain {
+  fill:url(#Forest)
+}
+.Mountain.terrain {
+  fill:url(#Mountain)
+}
+.Water.terrain {
+  fill:url(#Water)
+}
+.Unknown.terrain {
+  fill:rgba(132,66,0,1)
+}
+
+.dark {
+  fill:rgba(0,0,0,0.7);
+  pointer-events: none;
+}
+.highlight {
+  fill:rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+/*
+<ng-template #TerrainV let-type="type" let-dark="dark" let-highlight="highlight">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67 55" style="width:67px;height:55px"  [ngClass]="{dark:dark,highlight:highlight}">
+    <polygon class="terrain" [ngClass]="type" points="17, 0, 0, 27.5, 17, 55, 49, 55, 27.5, 67, 49, 0" />
+    <polygon class="overlay" points="17, 0, 0, 27.5, 17, 55, 49, 55, 27.5, 67, 49, 0" />
+    <text *ngIf="type==='Unknown'" style="fill:rgba(0,0,0,1);font-size:26px;font-family:verdana" dominant-baseline="middle" text-anchor="middle" x="33.5" y="27.5">?</text>
+  </svg>
+</ng-template>
+
+
+<ng-template #TerrainH let-type="type" let-dark="dark" let-highlight="highlight">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 63" style="width:55px;height:63px" [ngClass]="{dark:dark,highlight:highlight}">
+    <polygon class="terrain" [ngClass]="type" points="27, 0, 0, 17, 0, 45, 27, 62, 54, 45, 54, 17"/>
+    <polygon class="overlay" points="27, 0, 0, 17, 0, 45, 27, 62, 54, 45, 54, 17"/>
+    <text *ngIf="type==='Unknown'" style="fill:rgba(0,0,0,1);font-size:26px;font-family:verdana" dominant-baseline="middle" text-anchor="middle" x="27.5" y="31.5">?</text>
+  </svg>
+</ng-template>
+*/

@@ -1,0 +1,286 @@
+<gamesbyemail-base-rules [gameName]="'VIKTORY II'">
+ 
+  <a name="Overview">
+    <h2>Overview</h2>
+    <p>VIKTORY&nbsp;II is a combined arms war game for 2 to 8 players, fought on a hex tile map. Armies fight more strongly when comprised of units of different types rather than piles of the same unit. Certain terrains and urban developments strengthen the defender, and units converging from multiple directions strengthen the attacker.</p>
+    <a name="Overview.Unit%20support">
+      <p>A player's available military units are determined by the towns and cities they control, and the type of terrain those cities are in:</p>
+
+      <table border="1" cellspacing="0" style="background-color:#cccccc">
+      <tbody><tr><th colspan="2" nowrap="">Unit Support</th></tr>
+      <tr><td nowrap=""><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Town'}" [context]="teamCtx"></span>=<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span></td><td>Each town supports one infantry.</td></tr>
+      <tr><td nowrap=""><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'City'}" [context]="teamCtx"></span><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'TerrainRules'}" [context]="{type:'Plain'}"></span>=<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span>+<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span>+<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span></td><td>Each city on a plains hex supports three infantry.</td></tr>
+      <tr><td nowrap=""><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'City'}" [context]="teamCtx"></span><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'TerrainRules'}" [context]="{type:'Mountain'}"></span>=<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span>+<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'ArtilleryActive'}" [context]="teamCtx"></span></td><td>Each city on a mountain hex supports one infantry and one artillery.</td></tr>
+      <tr><td nowrap=""><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'City'}" [context]="teamCtx"></span><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'TerrainRules'}" [context]="{type:'Grassland'}"></span>=<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span>+<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'CavalryActive'}" [context]="teamCtx"></span></td><td>Each city on a grassland hex supports one infantry and one cavalry.</td></tr>
+      <tr><td nowrap=""><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'City'}" [context]="teamCtx"></span><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'TerrainRules'}" [context]="{type:'Forest'}"></span>=<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span>+<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FrigateActive'}" [context]="teamCtx"></span></td><td>Each city on a forest hex supports one infantry and one frigate.</td></tr>
+      </tbody></table>
+      <p></p>
+      
+      <p>The military units do not have to remain in the town or city hexes, they are free to move anywhere on the board. Capturing a town or city increases the attacker's units by the numbers above, and reduces the defender's units by the same numbers.</p>
+      
+      <p>A player moves and battles with the military units they have on the board at the beginning of their turn. Units lost in battle are moved to their owner's reserve. A player can place units in their reserve on to the board at the end of their turn. Also at the end of their turn, a player can build new towns or upgrade an existing town into a city, increasing their available military units.</p>
+      
+    </a>
+  </a>
+
+    
+  <a name="Setup">
+    <h2>Setup</h2>
+    <p>The game begins with an empty board surrounded by water. On each player's initial turn, they reveal five starting hexes. Place them in any order by dragging them to the board. The player then places their capital&nbsp;(<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Capitol'}" [context]="teamCtx"></span>)&nbsp;on any of the land hexes by clicking it with the left mouse. A town will be placed there as well, along with an infantry. The player may immediately build another town on a land hex that is exactly two or three spaces away from the capital hex, and once built, place another infantry in the second town or in the capital. As the towns are built, they reveal the hexes immediately surrounding them, and the player places those in any order. The first turn then ends.</p>
+    <p>In 2-6 player games, the first player may not place a second town on their first turn.</p>
+    <!--
+    <p>Recommendations: The capital hex preference order: forest, grassland, plains then mountain. Place to one side of center. Place a second land hex (grassland if you have one, else something different from capital hex) two spaces away from capital. Place second infantry in second town.</p>
+    -->
+  </a>
+    
+  <a name="Movement">
+    <h2>Movement</h2>
+    <p>Beginning on their second turn, players may move their military units in accordance to their range and restrictions. Move units by pressing and holding the left mouse button to grab the unit, and releasing the unit into a target hex (outlined in orange).</p>
+    <a name="Movement.Unit%20range">
+      <table border="1" cellspacing="0" style="background-color:#cccccc">
+      <tbody><tr><th colspan="3" nowrap="">Unit Range</th></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span></td><td align="center">&nbsp;2&nbsp;</td><td>Infantry can move up to two hexes. They must stop on the first hex if it is <a href="#Movement.Difficult%20terrain">difficult terrain</a>.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'ArtilleryActive'}" [context]="teamCtx"></span></td><td align="center">&nbsp;2&nbsp;</td><td>Artillery can move up to two hexes. They must stop on the first hex if it is <a href="#Movement.Difficult%20terrain">difficult terrain</a>.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'CavalryActive'}" [context]="teamCtx"></span></td><td align="center">&nbsp;3&nbsp;</td><td>Cavalry can move up to three hexes. They are unhindered by <a href="#Movement.Difficult%20terrain">difficult terrain</a>.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FrigateActive'}" [context]="teamCtx"></span></td><td align="center">&nbsp;5&nbsp;</td><td>Frigates can move up to five hexes. They can move through <a href="#Movement.Ports">ports</a>, but can not stop in them.</td></tr>
+      </tbody></table>
+    </a>
+    <p></p>
+
+    <a name="Movement.Difficult%20terrain">
+      <p><b>Difficult terrain</b> is a forest or mountain hex that contained no units at the beginning of a player's turn. If the player has a town or city in the hex, it is not difficult. If the player started their turn with any type of land unit in the hex (even if all the units have already left it) the hex is not difficult for them this turn, and will be marked with a pennant&nbsp;(<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Pennant'}" [context]="teamCtx"></span>). A hex that is difficult terrain at the start of a turn will remain difficult for the remainder of the turn, regardless of previous turns or other units moved in that turn.</p>
+    </a>
+    
+    <a name="Movement.Ports">
+      <p>A <b>port</b> is a land hex with a town or city, and with water hexes on at least two sides. If a player controls the port town or city, they may move their frigates from one water hex, through the port hex, to the other water hex. That movement will count as two hexes, just as if the port were water. A frigate may never stop in a port hex.</p>
+    </a>
+    
+    <a name="Movement.Exploration">
+      <p>As a unit is moved, any unexplored hexes adjacent to the unit are revealed. The unit must pause while the player places the revealed hexes in any order. The unit can then resume moving according to its remaining allowance and restrictions.</p>
+      <p>Units may only be moved one at a time. The unit previously moved forfeits any remaining movement once another unit is moved.</p>
+    </a>
+    
+    <a name="Movement.Roads%2fFerries">
+      <p>A land unit in their own town or city hex may move to another of their own town or city hexes two or three hexes away from the first at a cost of only one movement. Difficult terrain does not hinder movement along these notional roads/ferries for any unit, however they can be blocked by enemy units. There must be at least one route two or three hexes in length free of enemy units between the towns/cities. The notional roads/ferries do not help units in the non-urban hexes between the towns and cities.</p>
+    </a>
+
+    <p>A unit that enters a hex containing an enemy unit, town or city must immediately stop, forfeiting any remaining movement.</p>
+  </a>
+  
+  <a name="Transporting">
+    <h2>Transporting</h2>
+    <p>Land units may be transported by frigates in lieu of movement. Load land units by pressing and holding the left mouse button to grab the land unit, releasing it on an available adjacent frigate. Unload land units by pressing and holding the left mouse button to grab the land unit and release the land unit in an adjacent land hex.</p>
+
+    <a name="Transporting.3%20units%20max">
+      <p>Frigates may only transport three land units per turn. Land units that have moved cannot be loaded. Land units that have been unloaded cannot be moved.</p>
+    </a>
+    
+    <a name="Transporting.Loading">
+      <p>Loading land units does not end a frigate's movement. Frigates may pick up land units from multiple adjacent hexes anywhere along their path.</p>
+    </a>
+    
+    <a name="Transporting.Unloading">
+      <p>Unloading land units immediately ends a frigate's movement. Frigates may only unload land units into a single adjacent hex.</p>
+      <p>Loaded land units do not contribute to a frigate's attack or defense, they are cargo only, and are returned to the reserve if the frigate is lost in battle.</p>
+    </a>
+  </a>
+
+  <a name="Bombardment">
+    <h2>Bombardment</h2>
+    <p>Artillery and frigates may bombard enemy military units in adjacent hexes. Bombard by pressing and holding the right mouse button (or holding a CTRL key with the left button), and releasing in the adjacent hex.</p>
+    <p>A single unit may only bombard once per turn. Bombarding immediately ends that unit's movement. Frigates may still unload into any adjacent land hex after bombarding.</p>
+    <p>One attacker die is rolled per bombardment, and <a href="#Battles.Scoring%20hits">hits are scored as below</a>.</p>
+  </a>
+  
+  <a name="Battles">
+    <h2>Battles</h2>
+    <p>A unit that ends its movement in a hex with an enemy military unit, town or city initiates a battle that must be resolved before the movement/battle phase of the turn ends. These hexes will flash. More units may be brought in to the hex before the battle is begun. To resolve a battle, click on the hex and press the "Roll for Battle" button.</p>
+    <p>Once a battle starts, it must be completely resolved before other units can be moved or other battles started.</p>
+  
+    <a name="Battles.Land%20battles">
+      <h2>Land battles</h2>
+    </a>
+    <a name="Battles.Land%20battles.Pre-battle%20fire">
+      <p>Artillery units (if any available) of both sides first conduct pre-battle fire against opposing military units (if any present). Every artillery unit rolls one die, all at once, and <a href="#Battles.Scoring%20hits">hits are scored as below</a>.</p>
+    </a>
+    <p>Battle rounds are then conducted.</p>
+      
+    <a name="Battles.Land%20battles.Attacker%20rolls">
+      <table border="1" cellspacing="0" style="background-color:#cccccc">
+      <tbody><tr><th colspan="3" nowrap="">The attacker rolls the sum of:</th></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryActive'}" [context]="teamCtx"></span></td><td>One die if they have at least one infantry still in the battle.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'CavalryActive'}" [context]="teamCtx"></span></td><td>One die if they have at least one cavalry still in the battle.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'ArtilleryActive'}" [context]="teamCtx"></span></td><td>One die if they have at least one artillery still in the battle.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FromHexV0'}"></span></td><td>One die for each additional hex units still in the battle entered from (not counting the first hex).</td></tr>
+      </tbody></table>
+    </a>  
+    <p></p>
+    <a name="Battles.Land%20battles.Defender%20rolls">
+      <table border="1" cellspacing="0" style="background-color:#cccccc">
+      <tbody><tr><th colspan="3" nowrap="">The defender rolls the sum of:</th></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'InfantryStatic'}" [context]="oppoCtx"></span></td><td>One die if they have at least one infantry still in the battle.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'CavalryStatic'}" [context]="oppoCtx"></span></td><td>One die if they have at least one cavalry still in the battle.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'ArtilleryStatic'}" [context]="oppoCtx"></span></td><td>One die if they have at least one artillery still in the battle.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FrigateStatic'}" [context]="oppoCtx"></span></td><td>One die if they have at least one frigate in an adjacent hex (naval support).</td></tr>
+      <tr><th colspan="3" nowrap="">The defender also rolls the best of:</th></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'TerrainRules'}" [context]="{type:'Forest'}"></span></td><td>One die if the battle hex is a forest.</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Town'}" [context]="oppoCtx"></span></td><td>One die if the battle hex has a town.</td></tr>
+      <tr><td nowrap="" align="center"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td valign="bottom"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td valign="bottom">&nbsp;</td><td valign="bottom"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td></tr></tbody></table></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'TerrainRules'}" [context]="{type:'Mountain'}"></span></td><td>Two dice if the battle hex is a mountain.</td></tr>
+      <tr><td nowrap="" align="center"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td valign="bottom"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td><td valign="bottom">&nbsp;</td><td valign="bottom"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}"></span></td></tr></tbody></table></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'City'}" [context]="oppoCtx"></span></td><td>Two dice if the battle hex has a city (see <a href="#Lost capital penalties">lost capital penalties</a>).</td></tr>
+      </tbody></table>
+    </a>
+    <p></p>
+      
+    <p><a href="#Battles.Scoring%20hits">Hits are scored as below</a>.</p>
+    
+    <p>The attacker can <a href="#Battles.Retreating">retreat</a> between battle rounds if any defending military units survive.</p>
+    
+    <p>Battle rounds repeat until one side (or both) have lost all military units, or the attacker retreats.</p>
+      
+    <a name="Battles.Naval%20battles">
+      <h2>Naval battles</h2>
+      <p>The battle rounds begin immediately.</p>
+    </a>
+    <a name="Battles.Naval%20battles.Attacker%20rolls">
+      <table border="1" cellspacing="0" style="background-color:#cccccc">
+      <tbody><tr><th colspan="3" nowrap="">The attacker rolls the sum of:</th></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FrigateActive'}" [context]="teamCtx"></span></td><td>One die (regardless of the size of the fleet or its cargo).</td></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FromHexV0'}"></span></td><td>One die for each additional hex frigates still in the battle entered from (not counting the first hex).</td></tr>
+      </tbody></table>
+    </a>
+    <p></p>
+    <a name="Battles.Naval%20battles.Defender%20rolls">
+      <table border="1" cellspacing="0" style="background-color:#cccccc">
+      <tbody><tr><th colspan="3" nowrap="">The defender rolls the sum of:</th></tr>
+      <tr><td nowrap="" align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Die'}" [context]="teamCtx"></span></td><td align="center"><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'FrigateStatic'}" [context]="oppoCtx"></span></td><td>One die (regardless of the size of the fleet or its cargo).</td></tr>
+      </tbody></table>
+    </a>
+    <p></p>
+    
+    <p><a href="#Battles.Scoring%20hits">Hits are scored as below</a>.</p>
+    <p>The attacker can <a href="#Battles.Retreating">retreat</a> between battle rounds if any defending frigates survive.</p>
+    <p>Battle rounds repeat until one side (or both) have lost all frigates, or the attacker retreats.</p>
+      
+    <a name="Battles.Scoring%20hits">
+      <h2>Scoring hits</h2>
+      <p>A hit is scored on 3 or less (4 or less if the player is in <a href="#Battles.Scoring%20hits.Combat%20supply">combat&nbsp;supply</a>&nbsp;<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'CombatSupplySmall'}"></span>). The opponent removes a unit of their choosing. If a 1 is rolled, that hit is a tactical hit and the rolling player gets to choose which of their opponent's units gets removed instead. The attacker chooses units to be hit by clicking on them, the defender's choices are made programmatically.</p>
+    </a>
+
+    <a name="Battles.Scoring%20hits.Defender%20suppression">
+      <p>If the number of attacker hits is greater than the number of defending military units, the defender's military rolls are suppressed by this number. Defensive rolls for terrain and naval support can also be suppressed if the battle hex does not have a town or city. Urban defensive rolls can never be suppressed.</p>
+    </a>
+    
+    <a name="Battles.Scoring%20hits.Combat%20supply">
+      <p><span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'CombatSupply'}" style="float:left;margin-right:3px;margin-bottom:3px;"></span>A player is in <b>combat supply</b> if they control their own capital and have at least one city in each of the four types of land terrains. All rolls for that player are considered hits on 4 or less. Tactical hits continue to be on 1's. Combat supply status can be gained or lost immediately upon the build, capture, or loss of a city.</p>
+    </a>
+    
+    <a name="Battles.Urban%20battle%20resolution">
+      <h2>Urban battle resolution</h2>
+      <p>In a hex with an enemy town or city, attacking units must suffer at least one battle round, even if there are no defending military units.</p>
+      <p>If no attacking units remain, the defender prevails and retains control of the town or city for that turn. An enemy pennant&nbsp;(<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Pennant'}" [context]="oppoCtx"></span>) is placed in that hex, signifying that additional units may not be moved in for another attack.</p>
+      <p>If at least one attacking unit remains, the attacker prevails and gains control of the city or town. The attacker may move additional units in to or through the hex. Military units are added to the attacker's reserve according to the <a href="#Overview.Unit%20support">unit support schedule above</a>, and the same units are removed from the defender's reserve or from the board.</p>
+      <p>If the attacker prevails and the defender's capital is in the hex, the defender immediately suffers <a href="#Lost capital penalties">lost capital penalties</a>, described below.</p>
+    </a>
+      
+    <a name="Battles.Non0urban%20battle%20resolution">
+      <h2>Non-urban battle resolution</h2>
+      <p>If at least one defending unit remains, the defender prevails and retains control of the hex. An enemy pennant&nbsp;(<span class="piece-image" [template-projection]="pieceLibrary" [key]="{type:'Pennant'}" [context]="oppoCtx"></span>) is placed in that hex, signifying that additional units may not be moved in for another attack. The hex may still be <a href="#Bombardment">bombarded</a>.</p>
+      <p>If no defending units remain, the attacker may move additional units in to or through the hex.</p>
+    </a>
+      
+    <a name="Battles.Retreating">
+    <h2>Retreating</h2>
+      <p>If both sides have military units remaining after a battle round, the attacker has the option to retreat. To retreat, press the "Retreat" button after resolving hits from a battle round, then drag every remaining attacking unit into adjacent hexes.</p>
+      
+      <p>The attacker may only retreat units to adjacent hexes that were used to enter the battle hex, including hexes via amphibious landing. Frigates may not retreat in to or through a <a href="#Movement.Ports">port</a>.</p>
+      
+      <p>Attacking units may retreat regardless of terrain difficulty or whether they have movement remaining or not. Defending military units must be present to retreat from.</p>
+    </a>
+  </a>
+    
+  <a name="Building">
+    <h2>Building</h2>
+    <p>After the move/battle phase of a turn is completed, a player who controls their capital has the option to build two towns or upgrade one of their existing towns into a city.</p>
+    
+    <a name="Building.New%20towns">
+      <p>To build new towns, drag a town icon from the reserve area onto a hex that contains no enemy units nor has enemy units adjacent to it, that is at least 2 and at most 3 explored hexes away from one of your existing towns or cities, and is at least 2 hexes away from any enemy cities. Building a town immediately reveals any adjacent unexplored hexes, and adds an infantry to the player's reserve.</p>
+    </a>
+    
+    <a name="Building.Upgrading%20towns">
+      <p>To upgrade an existing town to a city, drag a town icon from the reserve area onto a hex that contains one of your existing towns with no enemy units adjacent to it. Upgrading a town to a city immediately reveals any unexplored hexes two spaces away, and adds unit(s) to the player's reserve <a href="#Overview.Unit%20support">according to the terrian</a>.</p>
+    </a>
+  </a>
+
+  <a name="Placing%20reserves">
+    <h2>Placing reserves</h2>
+    
+    <p>After the move/battle phase of a turn is completed, the player has the option to move any military units in their reserve on to the board, and any military units from the board in to their reserves.</p>
+    
+    <p>To place reserve units on the board, drag the unit from the reserve area onto a hex that contains one of your towns or cities that support that unit. A town or city can only accept the number of units in its schedule above in one turn. For example, a grassland city can only accept one infantry and one cavalry from the reserve. The capital city or town can accept any number or type of reserve.</p>
+    
+    <p>Frigates are placed in the player's choice of the closest water hexes to a forest city or capital.</p>
+    
+    <p>Cities or towns other than the capital can not receive reserve units if any enemy units are in adjacent hexes.</p>
+    
+    <p>Reserve frigates placed in a hex containing an enemy frigate will initiate a <a href="#Placing reserves.Reserve%20naval%20battles">reserve naval battle</a>, and the hex will flash. Other reserve frigates may be placed in this hex before the battle is started. All reserve naval battles must be resolved before the turn is complete.</p>
+    
+    <p>If a player does not control their capital, their cities can only receive one reserve infantry each. Other units in their reserve must remain off the board.</p>
+    
+    <p>To move a unit on the board to the reserves, drag the unit from the board to the reserve area. This unit can then immediately be placed according to the rules above.</p>
+    
+    <a name="Placing%20reserves.Reserve%20naval%20battles">
+      <h2>Reserve naval battles</h2>
+      <p>Reserve naval battles are resolved the same as <a href="#Battles.Naval%20battles">regular naval battles</a> above. Units lost may not be placed on the board again this turn. No builds are allowed and no units may be placed from the reserves after the first reserve naval battle has started.</p>
+    </a>
+  </a>
+    
+  <a name="Lost%20capital%20penalties">
+    <h2>Lost capital penalties</h2>
+    <p>If a player loses control of their capital, they immediately suffer the following penalties:</p>
+      <ul>
+        <li>Their cities defend with only one die instead of two.</li>
+        <li>They can not attain combat supply status.</li>
+        <li>They can not build or upgrade towns.</li>
+        <li>Their cities can only accept 1 infantry each during reserve placement.</li>
+      </ul>
+    
+  </a>
+    
+  <a name="Dark">
+    <h2>Dark</h2>
+    <p>With the dark option, the following applies:</p>
+      <ul>
+        <li>Hexes are 'dark' (you cannot see enemy units in them) except as described below.</li>
+        <li>When it is not your turn, you can only see into the spaces immediately surrounding your units and towns, and two spaces away from your cities and capital.</li>
+        <li>When it is your turn, you can see into the above spaces, plus any spaces you can move a unit to, plus one space beyond those.</li>
+        <li>You will 'remember' where opponent towns, cities and capitals in dark hexes, but only as you last saw them. You will not be able to tell if they have been upgraded or captured by another player since you last saw them.</li>
+      </ul>
+  </a>
+    
+  <a name="Independent%20exploration">
+    <h2>Independent exploration</h2>
+    <p>With the independent exploration option, the following applies:</p>
+      <ul>
+        <li>The map is explored independently.</li>
+        <li>You will not be able to see units in pieces you have not explored yet.</li>
+      </ul>
+  </a>
+    
+  <a name="Colorblind">
+    <h2>Colorblind</h2>
+    <p>With the colorblind option, the following applies:</p>
+      <ul>
+        <li>All enemy units appear the same grey color.</li>
+        <li>You cannot distinguish which enemy units belong to which opponent.</li>
+      </ul>
+  </a>
+    
+  <a name="About">
+    <h2>About&nbsp;VIKTORY&nbsp;II</h2>
+    <p>GamesByEmail's VIKTORY&nbsp;II online game is a clone of Morrison Games' board game <a target="MorrisonGames" href="http://www.mcssl.com/app/aftrack.asp?AFID=435271&amp;u=www.viktorygame.com/">VIKTORY&nbsp;II</a>®.</p>
+    <p>"VIKTORY&nbsp;II" is a registered trademark of Morrison Games, who were kind enough to license it to GamesByEmail.com.</p>
+    <p>VIKTORY&nbsp;II® is an excellent board game for face-to-face play, and has a <a target="MorrisonGames" href="http://www.mcssl.com/app/aftrack.asp?AFID=435271&amp;u=www.viktorygame.com/viktoryiihistory/">fascinating history of trial and tribulation as an independent game being brought to market</a>.</p>
+  </a>
+    
+  <svg gamesbyemail-games-viktory2-default-piecelibrary #pieceLibrary width="0" height="0" style="display:inline"></svg>
+</gamesbyemail-base-rules>

@@ -1,0 +1,6 @@
+<gamesbyemail-base-startgame [teamConfigs]="teamConfigs" [me]="me" [optionsTemplate]="optionsTemplate">
+  <p><b>VIKTORY II</b> Conquer a hex world.</p>
+</gamesbyemail-base-startgame>
+<ng-template #optionsTemplate let-teamConfig="teamConfig" let-options="options" let-change="change">
+  <gamesbyemail-games-viktory2-startoptions [teamConfig]="teamConfig" [options]="options" (change)="change($event);"></gamesbyemail-games-viktory2-startoptions>
+</ng-template>
